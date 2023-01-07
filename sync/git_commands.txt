@@ -1,0 +1,54 @@
+must run the first command -> git status //this checks if the current folder is a repo or not
+if want to initialize the folder as new repo -> git init
+if want to stage all files then -> git add --a
+if want to commit all staged files -> git commit -m "any comment with commit"
+if want to see logs of commits then -> git log \\ for exiting this command press q
+if want to clone a repo then -> git clone <link of repo>
+if want to delete anything -> rm -rf <file name>
+if want to create new files -> touch <file name>
+if want to ignore any file then create a new file named .gitignore in the same folder and add the file name you want to ignore
+if want to ignore any particular file type like only .log then add only *.log
+git diff <- compare between staging directory and current directory
+git diff --staged <- used to compare staged files and previous commit files
+Ctrl + <- used to zoom in into git bash 
+git commit -a -m <- used to direct commit without staging the modified file or staged files(not untracked files)
+git rm <file name> <- command to delete any file and also take that change into a staging area
+git mv <file name> <new file name> <- rename any file and also stage the changes
+git rm --cached second.txt <- used to untrack file 
+
+git remote add origin <url> -> used to add to an remote repository
+git push origin master -> used to commit all commits to the remote repo
+
+git config --global alias.<new command> old command -> used to shorten commands
+
+
+git checkout -b <branch name> -> commands to create new branch and shift to that branch
+git checkout <branch name > -> command to change the branch
+git branch -> command to list all the branches
+git merge <branch name> -> command to merge branch
+git reset --hard -> remove all local changes from local github repo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

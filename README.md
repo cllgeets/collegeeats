@@ -43,9 +43,9 @@ git commit -m "<your_commit_message>"
 git push -u origin <your_branch_name>
 ```
 
-**8.** Create a [PR](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to **`hack`** branch !
+**8.** Create a [PR](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to **`stable`** branch !
 
-**9.** **Congratulations!** :tada: Sit and relax, you've made your contribution to [Studiapp](https://github.com/cllgeets/collegeeats) project. :v: :heart:
+**9.** **Congratulations!** :tada: Sit and relax, you've made your contribution to [collegeeats](https://github.com/cllgeets/collegeeats) project. :v: :heart:
 
 
 **Thank You**

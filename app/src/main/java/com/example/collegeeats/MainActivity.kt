@@ -1,12 +1,11 @@
-package com.example.collegeeats.authentication
+package com.example.collegeeats
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.collegeeats.R
 
-class LoginActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_main)
     }
 }

@@ -2,4 +2,12 @@
     <string name="app_name">collegeeats</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text1">College\'s #1 Food and Delivery App</string>
+    <string name="enter_email_id">Enter Email Id</string>
+    <string name="continuelocal">Continue</string>
+    <string name="text2">Term of Service Privacy Policy COntent Policy</string>
+    <string name="text3">By continuing, you agree to our</string>
+    <string name="iitp_ac_in">\@iitp.ac.in</string>
+    <string name="log_in_or_sign_up">Log in or sign up</string>
+    <string name="todo">TODO</string>
 </resources>

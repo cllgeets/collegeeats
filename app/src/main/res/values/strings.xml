@@ -4,10 +4,33 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text1">College\'s #1 Food and Delivery App</string>
     <string name="enter_email_id">Enter Email Id</string>
+    <string name="enter_password">Enter Password</string>
     <string name="continuelocal">Continue</string>
+    <string name="resend_email">Resend Email</string>
     <string name="text2">Term of Service Privacy Policy COntent Policy</string>
     <string name="text3">By continuing, you agree to our</string>
     <string name="iitp_ac_in">\@iitp.ac.in</string>
     <string name="log_in_or_sign_up">Log in or sign up</string>
     <string name="todo">TODO</string>
+    <string name="check_your_email">Check your email</string>
+    <string name="text_big">confirm the email address using email we sent to p*****4@gmail.com</string>
+    <string name="open_email_app">Open email app</string>
+    <string name="search_for_stores">Search for stores</string>
+    <string name="your_location_here">Your location here</string>
+    <string name="store_name">Store Name</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="complete_your_profile">Complete your Profile</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="log_out_from">Log out From?</string>
+    <string name="demo_dish_name">Jalapenos, Sweet Corn panner</string>
+    <string name="dish_description">Appetizing combination of juicy Paneer , Sweet corn and jalepno in our house Sause</string>
+    <string name="item_s_added">ITEM(S) ADDED</string>
+    <string name="delivery_partner_fee_and_other">Delivery partner fee and other</string>
+    <string name="grand_total">Grand total</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="change">Change</string>
+    <string name="ruppes">₹</string>
+    <string name="reject">reject</string>
+    <string name="pickup_store">Pickup store</string>
+    <string name="notification_url">key=AAAAj-jVjkM:APA91bH0SR1OE1Sh4Tf8DQ7RoLNWRDxidalI05cENbcTuGwq3h71CXciw0Ecb9gR5-XtI7y8_rFqk4Fj0SFL1a4rLfm4ukqDCJ-8UrO71xXqxfRS6-f-GKjcTBqGyBGmUJsoxZCmyAdL</string>
 </resources>

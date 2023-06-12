@@ -5,22 +5,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.collegeeats.R
+import com.example.collegeeats.authentication.Functions.SigninFunctions
+import com.example.collegeeats.authentication.Functions.checkValue
+import com.example.collegeeats.databinding.FragmentLoginBinding
 
 class loginFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    private lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        binding.submit.setOnClickListener {
+            checkValue(binding.email) ?: return@setOnClickListener
+            checkValue(binding.password) ?: return@setOnClickListener
+
+            val email_text = binding.email.text.toString().trim()
+            val pass_text = binding.password.text.toString().trim()
+            SigninFunctions(requireActivity(), requireActivity().supportFragmentManager).signInWithEmailAndPassword(
+                email_text, pass_text, view, requireActivity()
+            )
+        }
+
+        return view
     }
 
-    companion object {
-    }
 }

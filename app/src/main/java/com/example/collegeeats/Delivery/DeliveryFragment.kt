@@ -45,6 +45,7 @@ class DeliveryFragment : Fragment() {
 
         if (isNetworkConnected(requireActivity())){
             LocationFunctions(requireContext()).checkLocation(requireActivity(), dialog, requireActivity(), fusedLocationClient)
+            LocationFunctions(requireActivity()).screenTopLocationShowing(FirebaseAuth.getInstance().currentUser!!.uid, binding.userLocation)
 
             val recyclerView: RecyclerView = binding.storeList
 
@@ -58,7 +59,6 @@ class DeliveryFragment : Fragment() {
                 storeAdapter = StoreAdapter(stores)
                 recyclerView.adapter = storeAdapter
             })
-            LocationFunctions(requireActivity()).screenTopLocationShowing(FirebaseAuth.getInstance().currentUser!!.uid, binding.userLocation)
         }else{
             Toast.makeText(requireActivity(), "No Internet.", Toast.LENGTH_SHORT).show()
         }

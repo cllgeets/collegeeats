@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.collegeeats.Data.MenuData
 import com.example.collegeeats.R
+import com.example.collegeeats.ViewModels.MenuViewModel
 import com.example.collegeeats.databinding.MenuItemBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MenuAdapter(private val menu: List<MenuData>,private val constraintLayout: ConstraintLayout,  private val price: TextView, private val items: TextView, val fragmentManager: FragmentManager) :
+class MenuAdapter(private val menu: List<MenuData>, private val constraintLayout: ConstraintLayout, private val price: TextView, private val items: TextView, private val viewModel: MenuViewModel, private val lifecycleOwner: LifecycleOwner,) :
     RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
     private lateinit var binding: MenuItemBinding
@@ -79,71 +81,39 @@ class MenuAdapter(private val menu: List<MenuData>,private val constraintLayout:
             val imageUrl = item.menu_image
             Glide.with(itemView.context).load(imageUrl).placeholder(R.color.Gray).into(imageView)
 
-            if (selectedDishes.containsKey(item.id)) {
-                // If dish is already selected, show counter and minus icon
-                val count = selectedDishes[item.id]!!
-                addTextView.text = count.toString()
-                minusImageView.visibility = View.VISIBLE
-            } else {
-                minusImageView.visibility = View.GONE
+            viewModel.selectedDishes.observe(lifecycleOwner) { selectedDishes ->
+                if (selectedDishes.containsKey(item.id)) {
+                    val count = selectedDishes[item.id]!!
+                    addTextView.text = count.toString()
+                    minusImageView.visibility = View.VISIBLE
+                    plusImageView.visibility = View.VISIBLE
+                } else {
+                    minusImageView.visibility = View.GONE
+                    plusImageView.visibility = View.GONE
+                    addTextView.text = "Add"
+                }
+                updateBottomView()
             }
 
             addTextView.setOnClickListener {
-                // Show counter and minus icon
-                addTextView.text = "1"
-                minusImageView.visibility = View.VISIBLE
-                plusImageView.visibility = View.VISIBLE
-
-                // Add dish to selectedDishes map
-                selectedDishes[item.id] = 1
-
-                // Update bottom view
-                updateBottomView()
+                viewModel.addDishToCart(item.id)
             }
 
             plusImageView.setOnClickListener {
-                val count = selectedDishes[item.id] ?: 0
-                // Increment the count for the dish
-                selectedDishes[item.id] = count + 1
-                addTextView.text = (count + 1).toString()
-
-                // Update bottom view
-                updateBottomView()
+                viewModel.addDishToCart(item.id)
             }
 
             minusImageView.setOnClickListener {
-                val count = selectedDishes[item.id] ?: 0
-                // Decrement the count for the dish
-                if (count > 1) {
-                    selectedDishes[item.id] = count - 1
-                    addTextView.text = (count - 1).toString()
-                } else {
-                    // If count is 1, remove the dish from selectedDishes map
-
-                    selectedDishes.remove(item.id)
-                    minusImageView.visibility = View.GONE
-                    addTextView.visibility = View.VISIBLE
-                    plusImageView.visibility =  View.GONE
-                    addTextView.text ="ADD"
-                }
-
-//                next_button.setOnClickListener {
-//                    Log.d("123", "123")
-//                    val sharedPreferences =itemView.context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
-//                    val editor = sharedPreferences.edit()
-//                    editor.putString("pending_order", Gson().toJson(selectedDishes))
-//                    editor.apply()
-//                    showFragment(CheckoutFragment(), fragmentManager, Constants.store_doc_id)
-//                }
-
-                updateBottomView()
+                viewModel.removeDishFromCart(item.id)
+            }
         }
     }
-}
     fun getData(): MutableMap<String, Int>{
-        return selectedDishes
+        return viewModel.selectedDishes.value!!
     }
+
     private fun updateBottomView() {
+        val selectedDishes = viewModel.selectedDishes.value ?: emptyMap()
         var totalDishes = 0
         var totalPrice = 0.0
 
@@ -151,14 +121,14 @@ class MenuAdapter(private val menu: List<MenuData>,private val constraintLayout:
             val dish = menu.find { it.id == id }
             if (dish != null) {
                 totalDishes += count
-                totalPrice += count*(dish.price.toInt())
+                totalPrice += count * dish.price.toInt()
             }
         }
 
         if (totalDishes > 0) {
             constraintLayout.visibility = View.VISIBLE
-            items.text = totalDishes.toString() + " ITEM SELECTED"
-            price.text = "₹" + totalPrice.toString()
+            items.text = "$totalDishes ITEM SELECTED"
+            price.text = "₹$totalPrice"
         } else {
             constraintLayout.visibility = View.GONE
         }

@@ -46,6 +46,15 @@ fun showFragment(fragment: Fragment, fragment_manager: FragmentManager, store_do
     bundle.putString("store_doc_id", store_doc_id)
     fragment.arguments = bundle
     fram.replace(R.id.menu_frag_container, fragment)
+    fram.commit()
+}
+
+fun showFragment2(fragment: Fragment, fragment_manager: FragmentManager, store_doc_id: String) {
+    val fram = fragment_manager.beginTransaction()
+    val bundle = Bundle()
+    bundle.putString("store_doc_id", store_doc_id)
+    fragment.arguments = bundle
+    fram.replace(R.id.menu_frag_container, fragment)
     fram.addToBackStack(null)
     fram.commit()
 }

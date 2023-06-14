@@ -1,12 +1,12 @@
 package com.example.collegeeats.Delivery
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.collegeeats.Data.Store
 import com.example.collegeeats.databinding.FragmentDeliveryBinding
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.firebase.firestore.FirebaseFirestore

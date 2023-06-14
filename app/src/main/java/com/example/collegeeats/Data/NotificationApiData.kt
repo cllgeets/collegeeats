@@ -1,4 +1,4 @@
-package com.example.collegeeats.Notification
+package com.example.collegeeats.Data
 
 data class ApiData(
     val to: String,

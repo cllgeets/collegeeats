@@ -30,10 +30,10 @@ class CheckoutUtils(val context: Context, val binding: FragmentPaymentBinding) {
                     binding.manualAddressFirebase.text = manualAddress
                     binding.selectThis.setOnClickListener {
                         behavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                        binding.deliveryLocation.text = manualAddress
-                        binding.addAddress.visibility = View.GONE
                         behavior.peekHeight = 0
-                        binding.manualAddressFirebase.visibility = View.GONE
+                        binding.deliveryLocation.text = manualAddress
+//                        binding.addAddress.visibility = View.GONE
+//                        binding.manualAddressFirebase.visibility = View.GONE
                     }
                 }
             }
@@ -53,8 +53,8 @@ class CheckoutUtils(val context: Context, val binding: FragmentPaymentBinding) {
                         behavior.state = BottomSheetBehavior.STATE_COLLAPSED
                         behavior.peekHeight = 0
                         binding.deliveryLocation.text = address
-                        binding.addAddress.visibility = View.GONE
-                        binding.manualAddressFirebase.visibility = View.GONE
+//                        binding.addAddress.visibility = View.GONE
+//                        binding.manualAddressFirebase.visibility = View.GONE
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package com.example.collegeeats.Repositories
 
-import com.example.collegeeats.Menu.MenuData
+import com.example.collegeeats.Data.MenuData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore

@@ -116,6 +116,10 @@ class CheckoutFragment : Fragment() {
                 }
         }
 
+        binding.backPress.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         return view
     }
 

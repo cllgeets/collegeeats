@@ -1,4 +1,4 @@
-package com.example.collegeeats.Delivery
+package com.example.collegeeats.Data
 
 import com.google.firebase.firestore.DocumentId
 

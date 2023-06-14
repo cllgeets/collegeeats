@@ -1,8 +1,8 @@
-package com.example.collegeeats.Dao
+package com.example.collegeeats.Data
 
 import com.google.firebase.firestore.FieldValue
 
-data class UserDao(
+data class UserData(
     val birthday: String = "",
     val created_at: FieldValue = FieldValue.serverTimestamp(),
     val email_id: String = "",

@@ -1,4 +1,4 @@
-package com.example.collegeeats.Menu
+package com.example.collegeeats.Data
 
 data class MenuData(
     var id: String ="",

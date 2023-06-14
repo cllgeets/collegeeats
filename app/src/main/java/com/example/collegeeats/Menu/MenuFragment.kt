@@ -6,15 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.collegeeats.CheckOut.CheckoutFragment
 import com.example.collegeeats.CommonUtils.PreferencesManager
+import com.example.collegeeats.Data.MenuData
 import com.example.collegeeats.Repositories.StoreRepository
+import com.example.collegeeats.ViewModels.MenuViewModel
 import com.example.collegeeats.activities.MainActivity
 import com.example.collegeeats.databinding.FragmentMenuBinding
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 class MenuFragment : Fragment() {
@@ -23,6 +23,7 @@ class MenuFragment : Fragment() {
     private lateinit var menuList: MutableList<MenuData>
     private lateinit var preferencesManager: PreferencesManager
     lateinit var storeRepository: StoreRepository
+    lateinit var menuViewModel: MenuViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +38,7 @@ class MenuFragment : Fragment() {
 
         preferencesManager = PreferencesManager(requireContext())
         storeRepository = StoreRepository()
+        menuViewModel = MenuViewModel(storeRepository)
 
         val shimmerFrameLayout = binding.deliveryShimmer
         shimmerFrameLayout.startShimmer()
@@ -53,8 +55,9 @@ class MenuFragment : Fragment() {
 
         lifecycleScope.launch {
             try {
-                val menuItems = storeRepository.getMenuItems(store_doc_id)
-                displayMenuItems(menuItems)
+                menuViewModel.fetchMenuItems(store_doc_id.toString())
+                val menuItems = menuViewModel.menuItems.value
+                displayMenuItems(menuItems!!)
             } catch (e: Exception) {
 
             } finally {
@@ -65,9 +68,7 @@ class MenuFragment : Fragment() {
         }
 
         binding.backPress.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            requireContext().startActivity(intent)
-            requireActivity().finish()
+            getBack()
         }
 
         binding.nextButton.setOnClickListener {
@@ -79,7 +80,7 @@ class MenuFragment : Fragment() {
             preferencesManager.saveStoreDocId(store_doc_id.toString())
             preferencesManager.saveTotalItemCart(total_item_cart)
 
-            showFragment(
+            showFragment2(
                 CheckoutFragment(),
                 requireActivity().supportFragmentManager,
                 store_doc_id.toString()
@@ -88,15 +89,22 @@ class MenuFragment : Fragment() {
         return view
     }
 
-    private fun displayMenuItems(menuItems: List<MenuData>) {
+    suspend fun displayMenuItems(menuItems: List<MenuData>) {
         binding.menuRecycler.layoutManager = LinearLayoutManager(context)
         val adapter = MenuAdapter(
             menuItems,
             binding.constraint,
             binding.tvTotalPrice,
             binding.tvSelectedDishes,
-            requireActivity().supportFragmentManager
+            menuViewModel,
+            viewLifecycleOwner
         )
         binding.menuRecycler.adapter = adapter
+    }
+
+    fun getBack(){
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        requireContext().startActivity(intent)
+        requireActivity().finish()
     }
 }

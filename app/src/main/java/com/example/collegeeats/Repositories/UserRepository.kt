@@ -1,6 +1,6 @@
 package com.example.collegeeats.Repositories
 
-import com.example.collegeeats.Dao.UserDao
+import com.example.collegeeats.Data.UserData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -16,7 +16,7 @@ class UserRepository {
     suspend fun writeUserDataToFirestore(uid: String, email: String, userImage: String) {
         val userRef = db.collection("Users").document(uid)
 
-        val newUser = UserDao(
+        val newUser = UserData(
             birthday = "",
             created_at = FieldValue.serverTimestamp(),
             email_id = email,
